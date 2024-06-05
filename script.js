@@ -24,19 +24,17 @@ video.addEventListener('play', () => {
   setInterval(async () => {
     const detections = await faceapi.detectAllFaces(video, new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks().withFaceExpressions().withAgeAndGender()
     console.log(detections)
-  //   if(detections.length() > 0){
-  //   faceapi.draw.drawDetections(detections, detections.map(res => res.detection))
-  //   results.forEach(result => {
-  //     const { age, gender, genderProbability } = result
-  //     new faceapi.draw.DrawTextField(
-  //       [
-  //         `${faceapi.utils.round(age, 0)} years`,
-  //         `${gender} (${faceapi.utils.round(genderProbability)})`
-  //       ],
-  //       result.detection.box.bottomLeft
-  //     ).draw(out)
-  //   })
-  // }
+    // faceapi.draw.drawDetections(detections, results.map(res => res.detection))
+    // results.forEach(result => {
+    //   const { age, gender, genderProbability } = result
+    //   new faceapi.draw.DrawTextField(
+    //     [
+    //       `${faceapi.utils.round(age, 0)} years`,
+    //       `${gender} (${faceapi.utils.round(genderProbability)})`
+    //     ],
+    //     result.detection.box.bottomLeft
+    //   ).draw(out)
+    // })
     const resizedDetections = faceapi.resizeResults(detections, displaySize)
     canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height)
     faceapi.draw.drawDetections(canvas, resizedDetections)
